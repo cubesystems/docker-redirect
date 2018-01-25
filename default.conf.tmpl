@@ -1,5 +1,12 @@
 server {
     server_name localhost;
     listen 80;
-    rewrite (.*) {{ .Env.REDIRECT }}{{ default .Env.REDIRECT_PATH "$1" }} permanent;
+
+    location /ping {
+      return 200 "OK\n";
+    }
+
+    location / {
+      rewrite (.*) {{ .Env.REDIRECT }}{{ default .Env.REDIRECT_PATH "$1" }} permanent;
+    }
 }
