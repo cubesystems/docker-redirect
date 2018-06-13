@@ -1,9 +1,11 @@
 server {
-    server_name localhost;
+    server_tokens  off;
     listen 80;
 
-    location /ping {
-      return 200 "OK\n";
+    location /health {
+        access_log off;
+        default_type text/plain;
+        return 200 'OK';
     }
 
     location / {
